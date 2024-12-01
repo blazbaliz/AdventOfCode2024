@@ -19,11 +19,21 @@ class HystorianHysteria():
         self._second_list = sorted(self._second_list, key=int)
 
     def do_puzzle(self):
+        distance, similarity = self._get_distance_and_similarity()
+
+        print("Day 1 Puzzle")
+        print(f"Distance between the two lists: {distance}")
+        print(f"Similarity: {similarity}")
+    
+    def _get_distance_and_similarity(self):
         distance = 0
+        similarity = 0
 
         for id in range(len(self._first_list)):
-            distance += abs(int(self._second_list[id]) - int(self._first_list[id])) 
+            distance += abs(int(self._second_list[id]) - int(self._first_list[id]))
 
-        return distance
-    
+            # Count occurrences of each element in list2
+            similarity += int(self._first_list[id]) *  self._second_list.count(self._first_list[id])
+
+        return distance, similarity
     
