@@ -1,24 +1,27 @@
-import os
+from interfaces.day_interface import DayInterface
 
-class HystorianHysteria():
+class HystorianHysteria(DayInterface):
 
     _first_list = []
     _second_list = []
 
-    def __init__(self):
-        # Change working directory
-        os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    def __init__(self, day):
+        super().__init__(day)
 
-        with open('puzzle_input.txt', 'r') as file:
-            for line in file.readlines():
-                rows = line.split()
-                self._first_list.append(rows[0])
-                self._second_list.append(rows[1])
-                
+    def on_load(self):
+        ''' Load the puzzle input '''
+        
+        for line in self.puzzle_input:
+            rows = line.split()
+            self._first_list.append(rows[0])
+            self._second_list.append(rows[1])
+                    
         self._first_list = sorted(self._first_list, key=int)
         self._second_list = sorted(self._second_list, key=int)
 
     def do_puzzle(self):
+        ''' Do the puzzle '''
+
         distance, similarity = self._get_distance_and_similarity()
 
         print("Day 1 Puzzle")
@@ -26,6 +29,8 @@ class HystorianHysteria():
         print(f"Similarity: {similarity}")
     
     def _get_distance_and_similarity(self):
+        ''' Get the distance and similarity between two lists '''
+        
         distance = 0
         similarity = 0
 
