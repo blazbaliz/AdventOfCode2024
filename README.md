@@ -11,5 +11,5 @@ Welcome to my **Advent of Code 2024** repository! This repository contains my so
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/YourUsername/AdventOfCode2024.git
+   git clone https://github.com/blazbaliz/AdventOfCode2024.git
    cd AdventOfCode2024
