@@ -7,7 +7,7 @@ class RedNosedReports(DayInterface):
         super().__init__(day)
 
     def on_load(self):
-        for line in self.puzzle_input:
+        for line in self.puzzle_input.splitlines():
             self.reports.append(list(map(int, line.split())))
 
     def do_puzzle(self):

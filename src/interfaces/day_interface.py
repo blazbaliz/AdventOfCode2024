@@ -4,7 +4,7 @@ import os
 class DayInterface(ABC):
     def __init__(self, day: int):
         with open(f"src/puzzles_by_day/day_{day}/puzzle_input.txt", 'r') as file:
-            self.puzzle_input = file.readlines()
+            self.puzzle_input = file.read()
 
         self.on_load()
 

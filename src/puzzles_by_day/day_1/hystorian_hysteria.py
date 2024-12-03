@@ -11,7 +11,7 @@ class HystorianHysteria(DayInterface):
     def on_load(self):
         ''' Load the puzzle input '''
         
-        for line in self.puzzle_input:
+        for line in self.puzzle_input.splitlines():
             rows = line.split()
             self._first_list.append(rows[0])
             self._second_list.append(rows[1])
