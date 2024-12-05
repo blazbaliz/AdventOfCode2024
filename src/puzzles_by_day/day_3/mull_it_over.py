@@ -28,6 +28,9 @@ class MullItOver(DayInterface):
         self._correct_data += self._find_mul_instructions(self.puzzle_input)
 
     def _get_mul_instructions_result(self, include_conditions=False):
+        '''
+        Calculate the result of the mul instructions
+        '''
         self._correct_data = []
         result = 0
 
@@ -40,22 +43,32 @@ class MullItOver(DayInterface):
         return result
     
     def _find_mul_instructions(self, line):
+        """
+        Find correct data by regex
+        """
         correct_data = []
         for data in re.findall(r"mul\(\d+,\d+\)", line):
                 correct_data += re.findall(r"\d+,\d+", data)
         return correct_data  
 
     def _find_with_conditions(self, line):
+        """
+        Find correct data with do and don't conditions in count
+        Split whole line by don't and then by do
+        Find correct data in each split
+        """
         self._correct_data = []
         line_split_by_dont = line.split("don't()")
 
         for i in range(len(line_split_by_dont)):
+            # First element is always correct
             if i == 0:
                 self._correct_data += self._find_mul_instructions(line_split_by_dont[i])
                 continue
             
             instructions = line_split_by_dont[i].split("do()")
             for j in range(len(instructions)):
+                # First element is disabled based on the split
                 if j == 0:
                     continue
                 self._correct_data += self._find_mul_instructions(instructions[j])
